@@ -175,8 +175,8 @@ export class TuiInputPhoneComponent
         event.preventDefault();
     }
 
-    onPaste(event: ClipboardEvent) {
-        this.setValueWithoutPrefix(getClipboardDataText(event));
+    onPaste(event: Event | ClipboardEvent) {
+        this.setValueWithoutPrefix(getClipboardDataText(event as ClipboardEvent));
     }
 
     onActiveZone(active: boolean) {
@@ -197,7 +197,7 @@ export class TuiInputPhoneComponent
         }
     }
 
-    onBackspace(event: KeyboardEvent) {
+    onBackspace(event: Event | KeyboardEvent) {
         const target = event.target as HTMLInputElement;
 
         if (

@@ -50,7 +50,7 @@ export class TuiSheetComponent<T> implements AfterViewInit {
     private readonly stopsRefs: QueryList<ElementRef<HTMLElement>> = EMPTY_QUERY;
 
     @Input()
-    item!: TuiSheet<T>;
+    declare item: TuiSheet<T>;
 
     id = '';
 

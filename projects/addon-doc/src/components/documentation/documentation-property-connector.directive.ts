@@ -36,16 +36,16 @@ export class TuiDocDocumentationPropertyConnectorDirective<T>
     documentationPropertyType = '';
 
     @Input()
-    documentationPropertyValue: T | null = null;
+    declare documentationPropertyValue: T;
 
     @Input()
     documentationPropertyDeprecated = false;
 
     @Input()
-    documentationPropertyValues: ReadonlyArray<T> | null = null;
+    documentationPropertyValues: readonly T[] | null = null;
 
     @Output()
-    readonly documentationPropertyValueChange = new EventEmitter<T | null>();
+    readonly documentationPropertyValueChange = new EventEmitter<T>();
 
     readonly changed$ = new Subject<void>();
 
@@ -87,7 +87,7 @@ export class TuiDocDocumentationPropertyConnectorDirective<T>
         this.changed$.next();
     }
 
-    onValueChange(value: T | null) {
+    onValueChange(value: T) {
         this.documentationPropertyValue = value;
         this.documentationPropertyValueChange.emit(value);
         this.setQueryParam(value);

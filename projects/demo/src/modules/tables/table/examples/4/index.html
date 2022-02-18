@@ -17,14 +17,18 @@
         </ng-template>
     </tui-hosted-dropdown>
 </p>
-<tui-loader [overlay]="true" [showLoader]="loading$ | async">
+<tui-loader
+    *tuiLet="loading$ | async as loading"
+    [overlay]="true"
+    [showLoader]="loading"
+>
     <table
         *tuiLet="data$ | async as data"
         tuiTable
         class="table"
         [columns]="columns"
-        [sorter]="sorter$ | async"
-        [direction]="direction$ | async"
+        [sorter]="(sorter$ | async) || sorters.name"
+        [direction]="(direction$ | async) || 1"
         (sorterChange)="sorter$.next($event)"
         (directionChange)="direction$.next($event)"
     >
@@ -58,8 +62,9 @@
             <tr>
                 <td [colSpan]="columns.length">
                     <tui-table-pagination
+                        *tuiLet="total$ | async as total"
                         class="tui-space_top-2"
-                        [total]="total$ | async"
+                        [total]="total || 0"
                         (pageChange)="onPage($event)"
                         (sizeChange)="onSize($event)"
                     ></tui-table-pagination>

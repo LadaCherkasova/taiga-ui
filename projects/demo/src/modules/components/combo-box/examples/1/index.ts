@@ -32,7 +32,7 @@ const databaseMockData: ReadonlyArray<User> = [
     encapsulation,
 })
 export class TuiComboBoxExample1 {
-    readonly search$ = new Subject<string>();
+    readonly search$: Subject<string | null> = new Subject();
 
     readonly items$: Observable<ReadonlyArray<User> | null> = this.search$.pipe(
         filter(value => value !== null),
@@ -44,16 +44,22 @@ export class TuiComboBoxExample1 {
 
     readonly testValue = new FormControl(databaseMockData[1]);
 
-    onSearchChange(searchQuery: string) {
+    onSearchChange(searchQuery: string | null) {
         this.search$.next(searchQuery);
+    }
+
+    extractValueFromEvent(event: Event): string {
+        return (event.target as EventTarget & {value?: string})?.value ?? '';
     }
 
     /**
      * Service request emulation
      */
-    private serverRequest(searchQuery: string): Observable<ReadonlyArray<User>> {
+    private serverRequest(searchQuery: string | null): Observable<ReadonlyArray<User>> {
         const result = databaseMockData.filter(user =>
-            user.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+            searchQuery
+                ? user.toString().toLowerCase().includes(searchQuery.toLowerCase())
+                : user,
         );
 
         return of(result).pipe(delay(Math.random() * 1000 + 500));

@@ -12,10 +12,10 @@ import {TuiFileLike} from '@taiga-ui/kit';
 })
 export class TuiInputFilesExample2 {
     readonly control = new FormControl([]);
-    rejectedFiles: ReadonlyArray<TuiFileLike> = [];
+    rejectedFiles: readonly TuiFileLike[] = [];
 
-    onReject(files: ReadonlyArray<TuiFileLike>) {
-        this.rejectedFiles = [...this.rejectedFiles, ...files];
+    onReject(files: TuiFileLike | readonly TuiFileLike[]) {
+        this.rejectedFiles = [...this.rejectedFiles, ...(files as TuiFileLike[])];
     }
 
     removeFile({name}: File) {

@@ -62,7 +62,7 @@ export class ExampleTuiTagComponent {
 
     maxLengthVariants: number[] = [10, 20];
 
-    maxLength = null;
+    maxLength: number | null = null;
 
     readonly statusVariants: readonly TuiStatusT[] = [
         'default',
