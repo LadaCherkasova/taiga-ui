@@ -5,11 +5,9 @@ import {
     ElementRef,
     Inject,
     Optional,
-    Type,
 } from '@angular/core';
 import {TUI_DIALOGS, TUI_IS_MOBILE, tuiAssert} from '@taiga-ui/cdk';
 import {VERSION} from '@taiga-ui/core/constants';
-import {TuiNotificationsHostComponent} from '@taiga-ui/core/modules/notifications';
 import {TUI_IS_MOBILE_RES_PROVIDER} from '@taiga-ui/core/providers';
 import {
     TUI_ANIMATIONS_DURATION,
@@ -44,10 +42,7 @@ export class TuiRootComponent {
         @Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>,
         @Optional()
         @Inject(TUI_DIALOGS)
-        readonly dialogs: readonly Observable<readonly unknown[]>[] | null,
-        @Optional()
-        @Inject(TuiNotificationsHostComponent)
-        readonly notificationsHost: Type<unknown>,
+        readonly dialogs: readonly Observable<unknown[]>[] | null,
         @Inject(TUI_IS_MOBILE) private readonly isMobile: boolean,
         @Inject(TUI_ASSERT_ENABLED) enabled: boolean,
         @Inject(TUI_IS_MOBILE_RES) readonly isMobileRes$: Observable<boolean>,
