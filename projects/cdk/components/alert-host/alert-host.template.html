@@ -1,7 +1,7 @@
 <div
     *ngFor="let alert$ of alerts"
     class="t-notifications-wrapper"
-    [@tuiParentAnimation]="(alert$ | async)?.length"
+    @tuiParentAnimation
 >
     <ng-container
         *ngFor="let item of alert$ | async"

@@ -42,7 +42,7 @@ export class TuiRootComponent {
         @Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>,
         @Optional()
         @Inject(TUI_DIALOGS)
-        readonly dialogs: readonly Observable<unknown[]>[] | null,
+        readonly dialogs: readonly Observable<readonly unknown[]>[] | null,
         @Inject(TUI_IS_MOBILE) private readonly isMobile: boolean,
         @Inject(TUI_ASSERT_ENABLED) enabled: boolean,
         @Inject(TUI_IS_MOBILE_RES) readonly isMobileRes$: Observable<boolean>,
